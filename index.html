@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Git Command Line Cheatsheet
+    </title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+    <section class="header">
+        <h1>Git Command Line Cheatsheet</h1>
+    </section>
+
+    <section class="wrapper">
+    <section class="words">
+        <input type="text" id="search" placeholder="search ..." >
+        <button id="myBtn" onclick="search()">Go</button>
+
+        <ul id="word_list">
+        </ul>
+    
+    </section>
+    <section class="word">
+        <h3 id="word_text"></h3>
+        <p id="definition">
+
+            <br>
+
+            <h3>Related Commands:</h3>
+            <li id="related"></li>
+        </p>
+    </section>
+    </section>
+    <p class="footer">Last updated by kc on May 1, 2021</p>
+</body>
+</html>
+<script type="text/javascript">
+    var dictionary = [
+        {
+            word: "git init",
+            def: "Initializes a hidden git subdirectory",
+            rel: ["git remote add origin url", "git remote -v"]
+        },
+        {
+            word:"git remote add origin url",
+            def: "Establish connection between local folder to online repository via ssh key",
+            rel: ["git init", "git remote -v"]
+        },
+        {
+            word:"git remote -v",
+            def:"Shows which remote links we have established.",
+            rel: ["git init", "git remote add origin url"]
+        },
+        {
+            word:"git status",
+            def:"Check which files have changed since last time you saved/commited",
+            rel:["git log", "git add .", "git add -A"]
+        },
+        {
+            word:"git add file.extension",
+            def:"Adds all modified files in directory to staging",
+            rel:["git add .", "git add -A"]
+        },
+        {
+            word:"git add .",
+            def:"Adds all modified files in diretory to staging",
+            rel:["git add -A", "git add file.extension"]
+        },
+        {
+            word:"git add -A",
+            def: "Adds all files in directory to staging",
+            rel: ["git add .", "git add file.extension"]
+        },
+        {
+            word:"git commit -m \"message\"",
+            def:"Takes everything in Staging and commits it with a \"description\"",
+            rel:["git push origin main", "git push"]
+        },
+        {
+            word:"git push origin main",
+            def:"Sends all local commits to link of online repo. \"git push\" followed by link name and branch name.",
+            rel:["git push"]
+        },
+        {
+            word:"git log",
+            def:"Shows history of all commits made with comments. Press \"q\" to quit.",
+            rel:["git commit -m \"message\""]
+        },
+        {
+            word:"git checkout -b name-of-branch",
+            def:"Creates new branch.",
+            rel:["git checkout name-of-branch"]
+        },
+        {
+            word:"git checkout name-of-branch",
+            def:"Changes to speified branch.",
+            rel:["git checkout -b name-of-branch"]
+        },
+        {
+            word:"git branch -l",
+            def:"View all branches.",
+            rel:["git branch -D name-of-branch"]
+        },
+        {
+            word:"git branch -D name-of-branch",
+            def:"Deletes specified branch.",
+            rel:["git branch -l"]
+        }
+
+    ];
+    // fill the dictionary with words
+
+    init = function () {
+        for (var i = 0; i < dictionary.length; i++) {
+            document.getElementById('word_list').innerHTML += "<li class = \"list\" onclick='show(" + i + ")'>" + dictionary[i].word + "</li>";
+        }
+    }
+    // call the init function when page loads
+    init();
+
+    //display a word, its definition and related words;    
+    show = function (i) {
+
+        document.getElementById('word_text').innerHTML = dictionary[i].word;
+        document.getElementById('definition').innerHTML = dictionary[i].def;
+
+        var list = "";
+
+        for (var j = 0; j < dictionary[i].rel.length; j++) {
+            list += "<li>" + dictionary[i].rel[j] + "</li>";
+            document.getElementById('related').innerHTML = list;
+        }
+
+    }
+
+//show  first word in the dictionary when page load;
+show(0);
+
+
+//search functionality;
+search =function() {
+    query = document.getElementById('search').value;
+
+    if (query == "") {
+        return;
+    }
+
+    found = -1; // initialize found to false
+
+    for (var i = 0; i < dictionary.length; i++) {
+        if (query == dictionary[i].word) {
+            found = i;
+            break;
+        }
+        else {
+            document.getElementById('word_text').innerHTML="Command not Found";
+            document.getElementById('definition').innerHTML="The command you entered is not found in the dictionary";
+        }
+    }
+
+    if (found >= 0) {
+        show(found);
+    }
+}
+
+
+</script>
