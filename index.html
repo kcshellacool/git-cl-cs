@@ -45,8 +45,13 @@
         {
             word:"git remote add origin url",
             def: "Establish connection between local folder to online repository via ssh key",
-            rel: ["git init", "git remote -v"]
+            rel: ["git init", "git remote -v","git remote rm origin"]
         },
+        {
+            word:"git remote rm origin",
+            def: "Unlink a repository. Something you want to try if you have issue with the existing repo pull and push request.",
+            rel: ["git remote add origin url"]
+        }
         {
             word:"git remote -v",
             def:"Shows which remote links we have established.",
