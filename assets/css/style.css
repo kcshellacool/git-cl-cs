@@ -11,7 +11,7 @@ body {
     width: 50%;
     margin:40px auto 0px;
     color: white;
-    background: #483D8b;
+    background: #ff9999;
     text-align:center;
     border: 1px solid gray;
     border-radius: 8px 8px 0px 0px;
@@ -47,11 +47,11 @@ body {
 }
 
 .word {
-    border-bottom: 1px #483D8b;
+    border-bottom: 1px #ff9999;
 }
 
 .word h3 {
-    color:#483D8b;
+    color:#ff9999;
 }
 #word_list {
     font-size:15px;
@@ -64,9 +64,14 @@ li {
     list-style-type: none;
 }
 
+li.list {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
 li.list:hover {
     cursor:pointer;
-    color:#483D8b;
+    color:#ff9999;
 
 }
 
@@ -84,12 +89,12 @@ li.list:hover {
 button:hover{
     cursor:pointer;
     background:white;
-    color:#483D8b;
+    color:#ff9999;
 }
 
 button {
     height: 22px;
-    background: #483D8b;
+    background: #ff9999;
     color: white;
     border: none;
     border-radius: 4px;
